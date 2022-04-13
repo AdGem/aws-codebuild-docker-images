@@ -1,3 +1,26 @@
+# AdGem Fork
+
+We are currently maintaining a fork of the official images so we can use PHP 8.0.0+ versions. The default AWS images are capped at 8.0.0.
+
+To build and push the custom adgem image:
+
+Update with latest from upstream:
+
+    git pull upstream master
+
+Build the ubuntu 5.0 image
+
+    cd ubuntu/standard/5.0
+    docker build -t aws/codebuild/standard:5.0 .
+
+Push it to AWS ECR
+
+    aws ecr get-login-password | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-2.amazonaws.com
+    docker tag aws/codebuild/standard:5.0 ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-2.amazonaws.com/adgem/codebuild/standard:5.0
+    docker push ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-2.amazonaws.com/adgem/codebuild/standard:5.0
+
+We will remove this fork and return to the standard images once AWS updates them.
+
 # AWS CodeBuild curated Docker images
 
 This repository holds Dockerfiles of official AWS CodeBuild curated Docker images. Please refer to [the AWS CodeBuild User Guide](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html) for list of environments supported by AWS CodeBuild.
