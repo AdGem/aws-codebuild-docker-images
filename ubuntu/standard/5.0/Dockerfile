@@ -277,7 +277,7 @@ RUN set -ex \
 #****************      PHP     ****************************************************
 ENV PHP_73_VERSION="7.3.25"
 ENV PHP_74_VERSION="7.4.13"
-ENV PHP_80_VERSION="8.0.0"
+ENV PHP_80_VERSION="8.1.5"
 
 RUN curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
 ENV PATH="/root/.phpenv/shims:/root/.phpenv/bin:$PATH"
